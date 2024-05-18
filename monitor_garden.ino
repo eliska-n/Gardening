@@ -31,10 +31,10 @@ void measure_soil() {
   data4 = analogRead(analogPin4);
 
   // vytištění výsledků po sériové lince
-  Serial.print("3: ");
+  Serial.print("Hygrometer 3: ");
   Serial.println(data3);
 
-  Serial.print("4: ");
+  Serial.print("Hygrometer 4: ");
   Serial.println(data4);
 }
 
