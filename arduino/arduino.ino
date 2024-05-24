@@ -1,5 +1,5 @@
 #include <AM2302-Sensor.h>
-#include "LowPower.h"
+#include <LowPower.h>
 
 
 /// Paramterization
@@ -65,14 +65,16 @@ void idle_sleep_8() {
 
 void loop() {
 	idle_sleep_8();
-
+	
+	delay(2000);
 	measure_soil();
 	idle_sleep_8();
 
+	delay(2000);
 	measure_voltage();
 	idle_sleep_8();
 
+	delay(2000);
 	measure_temperature_humidity();
 	idle_sleep_8();
-
 }
