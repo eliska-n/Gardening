@@ -1,4 +1,6 @@
 #include <AM2302-Sensor.h>
+#include "LowPower.h"
+
 
 /// Paramterization
 #define temperatureHumidityPin 7
@@ -46,10 +48,31 @@ void measure_temperature_humidity() {
 	}
 }
 
-void loop() {
-	measure_soil();
-	measure_voltage();
-	measure_temperature_humidity();
+void idle_sleep_8() {
+	LowPower.idle(
+		SLEEP_8S,
+		ADC_OFF,
+		TIMER4_OFF,
+		TIMER3_OFF,
+		TIMER1_OFF, 
+		TIMER0_OFF,
+		SPI_OFF,
+		USART1_OFF,
+		TWI_OFF,
+		USB_OFF
+	);
+}
 
-	delay(30 * 1000); // Measure once per 30 seconds
+void loop() {
+	idle_sleep_8();
+
+	measure_soil();
+	idle_sleep_8();
+
+	measure_voltage();
+	idle_sleep_8();
+
+	measure_temperature_humidity();
+	idle_sleep_8();
+
 }
