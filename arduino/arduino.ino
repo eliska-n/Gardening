@@ -1,6 +1,8 @@
 #include <AM2302-Sensor.h>
-#include <LowPower.h>
 
+// https://github.com/LowPowerLab/LowPower
+#include <LowPower.h>
+  
 
 /// Paramterization
 #define temperatureHumidityPin 7
@@ -59,22 +61,25 @@ void idle_sleep_8() {
 		SPI_OFF,
 		USART1_OFF,
 		TWI_OFF,
-		USB_OFF
+    USB_ON
 	);
 }
 
 void loop() {
 	idle_sleep_8();
 	
-	delay(2000);
+	delay(1500);
 	measure_soil();
+  delay(500);
 	idle_sleep_8();
 
-	delay(2000);
+	delay(1500);
 	measure_voltage();
+  delay(500);
 	idle_sleep_8();
 
-	delay(2000);
+	delay(1500);
 	measure_temperature_humidity();
+  delay(500);
 	idle_sleep_8();
 }
